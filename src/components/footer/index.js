@@ -4,7 +4,7 @@ import React from 'react';
 function Footer() {
   return(
      <footer>
-      &copy; 2018
+      &copy; 2022 MaryKariuki
       </footer>
   )
 }
