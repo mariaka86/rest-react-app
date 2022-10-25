@@ -8,41 +8,36 @@ import Header from './components/header';
 import Footer from './components/footer';
 import Form from './components/form';
 import Results from './components/results';
+import {useState} from 'react';
+import axios from 'axios';
 
-class App extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: null,
-      requestParams: {},
-    };
-  }
+const App = ()=> {
 
-  callApi = (requestParams) => {
+
+  const[data, setData] = useState(null);
+  const [requestParams,setRequestParams]= useState({});
+    
+  
+  const callApi = async (requestParams)=> {
     // mock output
-    const data = {
-      count: 2,
-      results: [
-        {name: 'fake thing 1', url: 'http://fakethings.com/1'},
-        {name: 'fake thing 2', url: 'http://fakethings.com/2'},
-      ],
-    };
-    this.setState({data, requestParams});
+   let newData = await axios.get ('https://pokeapi.co/api/v2/pokemon')
+   setData(newData.data.results);
+   setRequestParams(requestParams);
   }
 
-  render() {
     return (
       <React.Fragment>
         <Header />
-        <div>Request Method: {this.state.requestParams.method}</div>
-        <div>URL: {this.state.requestParams.url}</div>
-        <Form handleApiCall={this.callApi} />
-        <Results data={this.state.data} />
+        <div>Request Method: {requestParams.method}</div>
+        <div>URL: {requestParams.url}</div>
+        <Form handleApiCall={callApi} />
+        <Results data={data} />
         <Footer />
       </React.Fragment>
     );
-  }
+  
 }
+
 
 export default App;
