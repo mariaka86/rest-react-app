@@ -2,7 +2,7 @@ import React from 'react';
 
 import './form.scss';
 
-class Form extends React.Component {
+function Form (props) {
 
   handleSubmit = e => {
     e.preventDefault();
@@ -13,10 +13,9 @@ class Form extends React.Component {
     this.props.handleApiCall(formData);
   }
 
-  render() {
     return (
       <>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <label >
             <span>URL: </span>
             <input name='url' type='text' />
@@ -32,6 +31,6 @@ class Form extends React.Component {
       </>
     );
   }
-}
+
 
 export default Form;
