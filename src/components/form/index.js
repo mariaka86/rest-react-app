@@ -4,15 +4,13 @@ import './form.scss';
 
 function Form (props) {
   
-  let [method, setMethod] = useState('GET')
+  const [method, setMethod] = useState('')
+  const [url,setUrl] =useState('https://pokeapi.co/api/v2/pokemon')
 
   const handleSubmit = e => {
     e.preventDefault();
-    const formData = {
-      method:method ||'GET',
-      url: 'https://pokeapi.co/api/v2/pokemon',
-    };
-    props.handleApiCall(formData);
+   
+    props.handleApiCall({method,url})
   }
  
   const handleMethod = (e) =>{
@@ -24,7 +22,7 @@ function Form (props) {
         <form onSubmit={handleSubmit}>
           <label >
             <span>URL: </span>
-            <input name='url' type='text' />
+            <input onChange = {(e)=>setUrl(e.target.value)} name='url' type='text' />
             <button type="submit">GO!</button>
           </label>
           <label className="methods">
