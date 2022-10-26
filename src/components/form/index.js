@@ -3,6 +3,8 @@ import {useState} from 'react';
 import './form.scss';
 
 function Form (props) {
+  
+  let [method, setMethod] = useState('get')
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -11,6 +13,10 @@ function Form (props) {
       url: 'https://pokeapi.co/api/v2/pokemon',
     };
     props.handleApiCall(formData);
+  }
+ 
+  const handleMethod = (e) =>{
+    setMethod(e.target.value)
   }
 
     return (
@@ -22,10 +28,10 @@ function Form (props) {
             <button type="submit">GO!</button>
           </label>
           <label className="methods">
-            <span id="get">GET</span>
-            <span id="post">POST</span>
-            <span id="put">PUT</span>
-            <span id="delete">DELETE</span>
+            <span id="get" onclick={handleMethod}>GET</span>
+            <span id="post" onclick={handleMethod}>POST</span>
+            <span id="put" onclick={handleMethod}>PUT</span>
+            <span id="delete" onclick={handleMethod}>DELETE</span>
           </label>
         </form>
       </>
