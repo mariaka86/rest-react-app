@@ -21,7 +21,8 @@ const App = ()=> {
   
   const callApi = async (requestParams)=> {
     // mock output
-   let newData = await axios.get ('https://pokeapi.co/api/v2/pokemon')
+   let newData = await axios.get('https://pokeapi.co/api/v2/pokemon')
+
    setData(newData.data.results);
    setRequestParams(requestParams);
   }
