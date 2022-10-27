@@ -8,7 +8,7 @@ import Header from './components/header';
 import Footer from './components/footer';
 import Form from './components/form';
 import Results from './components/results';
-import {useState} from 'react';
+import {useState,useEffect} from 'react';
 import axios from 'axios';
 
 
@@ -17,7 +17,11 @@ const App = ()=> {
 
   const[data, setData] = useState(null);
   const [requestParams,setRequestParams]= useState({});
+  const [headers,setHeaders]= useState(null);
     
+  useEffect(()=>{
+    console.log('userEffect hook')
+  })
   
   const callApi = async (requestParams)=> {
     // mock output
@@ -25,6 +29,7 @@ const App = ()=> {
 
    setData(newData.data.results);
    setRequestParams(requestParams);
+   setHeaders(newData.headers);
   }
 
     return (
@@ -33,7 +38,7 @@ const App = ()=> {
         <div>Request Method: {requestParams.method}</div>
         <div>URL: {requestParams.url}</div>
         <Form handleApiCall={callApi} />
-        <Results data={data} />
+        <Results data={data} headers={headers} />
         <Footer />
       </React.Fragment>
     );
