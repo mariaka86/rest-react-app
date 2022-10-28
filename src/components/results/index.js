@@ -7,7 +7,7 @@ const Results = (props) => {
 
   return (
     <section data-testid="headers">
-
+    <pre data-testid = "pre-results"></pre>
       {props.headers ?
         (
   

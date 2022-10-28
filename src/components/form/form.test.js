@@ -12,3 +12,13 @@ describe('Form Component',()=>{
     expect(handleApiCall).toHaveBeenCalled();
   })
 })
+it('Should display error when there has been a bad api call', () => {
+  let handleBadApiCall = jest.fn(() => new Error('test'));
+
+  render(<Form handleApiCall={handleBadApiCall} />);
+  let button = screen.getByText('GO!');
+  expect(button).toBeInTheDocument();
+  fireEvent.click(button)                        
+  expect(handleBadApiCall).toHaveBeenCalled();      
+});
+
